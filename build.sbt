@@ -1,7 +1,5 @@
 name := "Xtract"
 
-logLevel := Level.Debug
-
 inThisBuild(Seq(
   credentials += Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", System.getenv("SONATYPE_USERNAME"), System.getenv("SONATYPE_PASSWORD")),
   developers ++= List(
@@ -14,7 +12,6 @@ inThisBuild(Seq(
   scmInfo := Some(ScmInfo(url("https://github.com/lucidsoftware/xtract"), "scm:git:git@github.com:lucidsoftware/xtract.git")),
   version := sys.props.getOrElse("build.version", "0-SNAPSHOT"),
   fork in test := true,
-  logLevel := Level.Debug,
   scalacOptions ++= Seq(
     "-deprecation",
     "-feature",
@@ -54,6 +51,7 @@ lazy val xtractTesting = project.in(file("testing")).settings(
 // we have a seperate project for tests, so that we cand depend on
 // xtract-testing
 lazy val allTests = project.in(file("unit-tests")).settings(
+  logLevel in test := Level.Debug,
   publishArtifact := false,
   packagedArtifacts := Map.empty,
   publish := {},

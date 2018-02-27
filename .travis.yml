@@ -43,8 +43,7 @@ before_script:
   - '[ "$TRAVIS_PULL_REQUEST" != false ] || export SBT_OPTS=-Dbuild.version=${TRAVIS_TAG:-$TRAVIS_BRANCH-SNAPSHOT}'
 
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION compile packageBin packageDoc packageSrc
-  - sbt -debug ++$TRAVIS_SCALA_VERSION test
+  - sbt ++$TRAVIS_SCALA_VERSION compile packageBin packageDoc packageSrc test
 
 install: sbt ++$TRAVIS_SCALA_VERSION update
 before_cache:
