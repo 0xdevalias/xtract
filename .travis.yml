@@ -13,7 +13,8 @@ sudo: true
 cache:
   directories:
     - $HOME/.ivy2/cache
-    - $HOME/.sbt/
+    - $HOME/.sbt/boot
+    - $HOME/.coursier
 
 after_success:
   - |
@@ -42,11 +43,6 @@ deploy:
 before_script:
   - '[ "$TRAVIS_PULL_REQUEST" != false ] || export SBT_OPTS=-Dbuild.version=${TRAVIS_TAG:-$TRAVIS_BRANCH-SNAPSHOT}'
 
-script:
-  - sbt ++$TRAVIS_SCALA_VERSION compile packageBin packageDoc packageSrc test
-
-install: sbt ++$TRAVIS_SCALA_VERSION update
 before_cache:
   #Avoid unncessary cache updates
   - find $HOME/.ivy2 -name "ivydata-*.properties" -print -delete
-  - find $HOME/.sbt  -name "*.lock" -print -delete
