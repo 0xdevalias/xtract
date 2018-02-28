@@ -44,6 +44,7 @@ lazy val xtract = project.in(file("xtract-core")).settings(
 
 lazy val xtractTesting = project.in(file("testing")).settings(
   name := "xtract-testing",
+  parallelExecution in Test := false,
   description := "Specs2 matchers for xtract.",
   libraryDependencies ++= specs2Dependency
 ).dependsOn(xtract)
