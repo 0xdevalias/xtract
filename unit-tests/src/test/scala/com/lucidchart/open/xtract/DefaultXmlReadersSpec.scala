@@ -5,6 +5,8 @@ import scala.xml._
 
 class DefaultXmlReadersSpec extends XmlReaderSpecification with DefaultXmlReaders {
 
+  sequential
+
   case class FakeParseError() extends ParseError
 
   val empty = NodeSeq.fromSeq(Nil)
